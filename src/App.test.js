@@ -100,34 +100,8 @@ test('multiple recipes are added to recipes state', () => {
   const secondSubmittedRecipe = { name: secondRecipeName, instructions: secondRecipeInstructions }
 
   wrapper.setState({recipes: [firstSubmittedRecipe, secondSubmittedRecipe]})
-  // wrapper.setState({recipes: [secondSubmittedRecipe]})
 
   const allRecipes = wrapper.state().recipes
 
-  console.log('allRecipes', allRecipes);
-  console.log('typeof(allRecipes)', typeof(allRecipes));
-
   expect(allRecipes.length).toEqual(2)
 })
-
-// test('multiple recipes are added to unordered list', () => {
-//   const wrapper = shallow(<App />)
-
-//   const firstRecipeName = "Lean Pockets"
-//   const firstRecipeInstructions = "place in toaster oven on 350 for 45 minutes"
-//   const firstSubmittedRecipe = { name: firstRecipeName, instructions: firstRecipeInstructions }
-
-//   const secondRecipeName = "Hot Pockets"
-//   const secondRecipeInstructions = "place in toaster oven on 350 for 45 minutes"
-//   const secondSubmittedRecipe = { name: secondRecipeName, instructions: secondRecipeInstructions }
-
-//   wrapper.setState({recipes: [firstSubmittedRecipe]})
-//   wrapper.setState({recipes: [secondSubmittedRecipe]})
-
-//   // console.log('first recipe.name', firstSubmittedRecipe.name);
-//   // console.log('second recipe.name', secondSubmittedRecipe.name);
-
-//   expect(wrapper.find('ul')).toHaveLength(2)
-//   expect(wrapper.find('li').text()).toEqual("Lean Pockets")
-//   expect(wrapper.find('li').text()).toEqual("Hot Pockets")
-// })

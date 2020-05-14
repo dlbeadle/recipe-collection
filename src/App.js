@@ -59,9 +59,11 @@ class App extends React.Component {
       {
         this.state.recipes.length > 0 ?
         <ul>
-          {/* {this.state.recipes} */}
-          {/* {console.log(this.state.recipes)} */}
-          <li key>{ this.state.recipes[0].name }</li>
+          {
+            this.state.recipes.map((recipe) => (
+              <li key={recipe}>{recipe.name}</li>
+            ))
+          }
         </ul> :
         <p>There are no recipes to list.</p>
       }
