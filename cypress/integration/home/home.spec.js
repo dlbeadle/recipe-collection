@@ -34,4 +34,33 @@ describe("Home Page", () => {
           }) 
         }) 
       })
+
+    it("contains a list of multiple recipes when more than one is entered", () => {
+        const addRecipeButton = cy.get('#add-recipe')
+        addRecipeButton.click().then(() => {
+            // First recipe
+            cy.get('input[name="newRecipeName"]').type("Tofu Scramble Tacos")
+            cy.get('textarea[name="newRecipeInstructions"]').type("1. heat a skillet on medium with a dollop of coconut oil {enter} 2. warm flour tortillas")
+            cy.get('input[type="submit"]').click()
+            cy.get('input[name="newRecipeName"]').clear()
+            cy.get('textarea[name="newRecipeInstructions"]').clear()
+ 
+
+            // Second recipe
+            cy.get('input[name="newRecipeName"]').type("Fish Scramble Tacos")
+            cy.get('textarea[name="newRecipeInstructions"]').type("1. heat a skillet on medium with a dollop of coconut oil {enter} 2. warm flour tortillas")
+            cy.get('input[type="submit"]').click()
+            // cy.get('input[name="newRecipeName"]').clear()
+            // cy.get('textarea[name="newRecipeInstructions"]').clear()
+
+            cy.get('li').then(() => { 
+                cy.get('li').contains("Tofu Scramble Tacos")
+                cy.get('li').contains("Fish Scramble Tacos")
+            }) 
+        })
+
+        
+
+    })
+    
 })

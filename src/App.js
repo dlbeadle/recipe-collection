@@ -44,7 +44,7 @@ class App extends React.Component {
         <input type="submit" />
       </form>
     )
-  
+
   return (
     <div className="App">
       <h1 className="App-header">My Recipes</h1>
@@ -56,7 +56,9 @@ class App extends React.Component {
       {
         this.state.recipes.length > 0 ?
         <ul>
-          <li>{ this.state.recipes[0].name }</li>
+          {/* {this.state.recipes} */}
+          {console.log(this.state.recipes)}
+          <li key>{ this.state.recipes[0].name }</li>
         </ul> :
         <p>There are no recipes to list.</p>
       }
