@@ -82,8 +82,26 @@ test('recipe name from recipe in state appears in unordered list', () => {
 
   wrapper.setState({recipes: [submittedRecipe]})
 
-  console.log('recipe.name', submittedRecipe.name);
+  // console.log('recipe.name', submittedRecipe.name);
 
   expect(wrapper.find('li')).toHaveLength(1)
   expect(wrapper.find('li').text()).toEqual("Lean Pockets")
+})
+
+test('multiple recipes are added to recipes state', () => {
+  const wrapper = shallow(<App />)
+
+  const firstRecipeName = "Lean Pockets"
+  const firstRecipeInstructions = "place in toaster oven on 350 for 45 minutes"
+  const firstSubmittedRecipe = { name: firstRecipeName, instructions: firstRecipeInstructions }
+
+  const secondRecipeName = "Hot Pockets"
+  const secondRecipeInstructions = "place in toaster oven on 350 for 45 minutes"
+  const secondSubmittedRecipe = { name: secondRecipeName, instructions: secondRecipeInstructions }
+
+  wrapper.setState({recipes: [firstSubmittedRecipe, secondSubmittedRecipe]})
+
+  const allRecipes = wrapper.state().recipes
+
+  expect(allRecipes.length).toEqual(2)
 })

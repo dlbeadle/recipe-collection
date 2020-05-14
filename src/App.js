@@ -15,13 +15,16 @@ class App extends React.Component {
 
   submitRecipe = (event) => {
     event.preventDefault()
-    this.setState({recipes: [
-        {
-          name: this.state.newRecipeName, 
-          instructions :this.state.newRecipeInstructions
-        }
-      ]
-    })
+    let currentRecipes = this.state.recipes
+
+    currentRecipes.push(
+      {
+        name: this.state.newRecipeName,
+        instructions: this.state.newRecipeInstructions
+      }
+    )
+
+    this.setState({recipes: currentRecipes})
   }
 
   handleChange = (event) => {
@@ -44,7 +47,7 @@ class App extends React.Component {
         <input type="submit" />
       </form>
     )
-  
+
   return (
     <div className="App">
       <h1 className="App-header">My Recipes</h1>
@@ -56,7 +59,11 @@ class App extends React.Component {
       {
         this.state.recipes.length > 0 ?
         <ul>
-          <li>{ this.state.recipes[0].name }</li>
+          {
+            this.state.recipes.map((recipe) => (
+              <li key={recipe}>{recipe.name}</li>
+            ))
+          }
         </ul> :
         <p>There are no recipes to list.</p>
       }
